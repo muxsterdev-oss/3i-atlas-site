@@ -7,6 +7,9 @@
     <meta name="description" content="3I/ATLAS — Impact: 2027. The object people call 'alien'. The narrative begins." />
     <title>3I/ATLAS — Impact: 2027</title>
 
+    <!-- PERFORMANCE BOOST: Preconnect to Google Fonts for faster fetching -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Font: Orbitron -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
@@ -16,40 +19,30 @@
         ========================================================
         */
         :root {
-            /* Accent color for buttons, numbers, and glows */
             --neon-blue: #00e6ff;
-            /* Text color with slight tint for contrast */
             --text-color: #f0f0f0;
-            /* Black shadow to improve legibility on busy background */
-            --text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
-            /* Max width for content to prevent overly wide lines on desktop */
+            /* Subtler shadow for cleaner page */
+            --text-shadow: 0 0 4px rgba(0, 0, 0, 0.9); 
             --content-max-width: 700px;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            /* Use min-height to allow content to grow, but keep it centered */
             min-height: 100vh;
             width: 100vw;
-            /* FIX: Removed overflow: hidden so content won't cut off on small screens */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             
-            /* Background Image/Overlay for Contrast */
-            background-image: 
-                /* 1. Dark overlay for contrast (80% opacity) */
-                linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                /* 2. Original background image */
-                url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            /* PERFORMANCE FIX: Replaced external image with pure CSS background */
+            background: #000000;
+            background-image: radial-gradient(circle at center, #010101 0%, #000000 100%);
             
             color: var(--text-color);
             text-align: center;
@@ -57,25 +50,23 @@
             position: relative;
         }
 
-        /* FIX: Main content wrapper now constrains width and adds padding */
         .wrap {
             max-width: var(--content-max-width);
             width: 90%;
-            padding: 20px 10px; /* Added horizontal padding for mobile */
-            z-index: 10; /* Ensures content is above star animations */
+            padding: 20px 10px;
+            z-index: 10; 
         }
         
-        /* FIX: Added Text Shadow for Contrast */
         h1, .title, .subtitle, .small {
             text-shadow: var(--text-shadow);
         }
 
         /*
         ========================================================
-        II. CINEMATIC BACKGROUND & HERO
+        II. CINEMATIC BACKGROUND (PURE CSS STARS)
         ========================================================
         */
-        /* Cinematic galaxy layers - z-index is lower than content */
+        /* These pure CSS star animations are very light on resources */
         body::before,
         body::after {
             content: "";
@@ -91,7 +82,6 @@
             opacity: 0.3;
         }
 
-        /* (Star animations remain the same as they were good) */
         body::before {
             background-image:
                 radial-gradient(1px 1px at 10% 20%, rgba(0, 200, 255, 0.8) 50%, transparent 50%),
@@ -114,9 +104,7 @@
             100% { background-position: 2000px 1000px, -1500px 700px, 1000px -1200px; }
         }
         
-        /* Comet gentle movement only */
         .svg-wrap {
-            /* FIX: Added max-width to SVG to be responsive and not dominate screen */
             max-width: 400px; 
             width: 100%;
             height: auto;
@@ -136,11 +124,10 @@
         ========================================================
         */
         h1 {
-            /* FIX: Increased font-size for better impact */
             font-size: clamp(2rem, 5vw, 4rem); 
             letter-spacing: 2px;
             margin: 1rem 0;
-            color: var(--neon-blue); /* Highlights the main heading */
+            color: var(--neon-blue);
         }
         
         .subtitle {
@@ -150,19 +137,19 @@
 
         .small {
             font-size: 0.9rem;
-            opacity: 0.8; /* Slight increase in opacity for readability */
+            opacity: 0.8;
             margin-top: 1.5rem;
-            line-height: 1.5; /* IMPROVEMENT: Added line height */
+            line-height: 1.5;
         }
 
         /* Countdown Style */
         .countdown {
             display: flex;
             justify-content: center;
-            gap: clamp(10px, 2vw, 25px); /* Responsive gap */
+            gap: clamp(10px, 2vw, 25px);
             margin: 2rem 0;
             font-size: 1.1rem;
-            text-shadow: 0 0 10px rgba(0, 230, 255, 0.8); /* Stronger shadow for numbers */
+            text-shadow: 0 0 10px rgba(0, 230, 255, 0.8);
         }
 
         .cd-item .num {
@@ -186,37 +173,38 @@
         .cta {
             margin-top: 2rem;
             display: flex;
-            /* FIX: Changed to column flow on small screens */
             flex-direction: column; 
-            gap: 1rem; /* Increased gap for better touch targets */
+            gap: 1rem;
             justify-content: center;
             align-items: center;
         }
         
         @media (min-width: 480px) {
             .cta {
-                flex-direction: row; /* Back to row on wider screens */
+                flex-direction: row;
             }
         }
 
         .btn {
-            width: 100%; /* Make buttons full width on mobile by default */
-            max-width: 300px; /* Set a max width for desktop buttons */
+            width: 100%;
+            max-width: 300px;
             background: transparent;
             color: var(--neon-blue);
             border: 1px solid var(--neon-blue);
-            padding: 12px 24px; /* Slightly larger padding for touch-friendliness */
-            border-radius: 4px; /* Sharper corners look more 'tech' */
+            padding: 12px 24px;
+            border-radius: 4px;
             cursor: pointer;
             transition: 0.3s ease;
-            font-size: 1rem; /* Slightly larger font */
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-decoration: none; /* Required for <a> tags */
+            text-shadow: var(--text-shadow);
         }
 
         .btn:hover {
             background: rgba(0, 230, 255, 0.15);
-            box-shadow: 0 0 10px var(--neon-blue); /* Enhanced hover glow */
+            box-shadow: 0 0 10px var(--neon-blue);
             color: white;
         }
         
@@ -240,8 +228,10 @@
 </head>
 
 <body>
+    <!-- The .wrap ensures content is centered and responsive -->
     <div class="wrap">
         <div class="hero">
+            <!-- Inline SVG comet (no external assets) -->
             <div class="svg-wrap" aria-hidden="true">
                 <svg viewBox="0 0 720 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -261,11 +251,13 @@
 
                     <rect width="100%" height="100%" fill="transparent" />
 
+                    <!-- trailing streaks -->
                     <g filter="url(#glow)" transform="translate(60,40)">
                         <path d="M100 200 C260 160 420 120 600 40" stroke="url(#g1)" stroke-width="36" stroke-linecap="round" fill="none" opacity="0.95" />
                         <path d="M120 220 C280 180 440 140 640 60" stroke="url(#g1)" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.8" />
                     </g>
 
+                    <!-- comet core -->
                     <g transform="translate(520,80)">
                         <circle r="42" fill="#002230" />
                         <circle r="36" fill="url(#g1)" />
@@ -276,6 +268,7 @@
                         </g>
                     </g>
 
+                    <!-- faint stars -->
                     <g fill="#0a2233" opacity="0.8">
                         <circle cx="40" cy="30" r="1.2" />
                         <circle cx="120" cy="80" r="1" />
@@ -286,10 +279,13 @@
                 </svg>
             </div>
 
+            <!-- Content -->
             <div>
+                <!-- Primary Heading -->
                 <h1 class="impact">Impact: 2027</h1>
                 <div class="subtitle">3I/ATLAS — the object people call "alien". The narrative begins.</div>
 
+                <!-- Countdown -->
                 <div class="countdown" id="countdown">
                     <div class="cd-item">
                         <div class="num" id="cd-days">--</div>
@@ -309,16 +305,19 @@
                     </div>
                 </div>
 
+                <!-- Call to Action (CTA) Buttons -->
                 <div class="cta">
-                    <button class="btn" id="learnBtn">Observers' Dossier</button>
+                    <a href="lore.html" class="btn" id="learnLink">Observers' Dossier</a>
                     <button class="btn primary" id="buyBtn" onclick="window.open('https://app.uniswap.org/explore/tokens/base/0x0DB21dB265D2a04A1798c2859CDb772600f9FF75?inputCurrency=0x0DB21dB265D2a04A1798c2859CDb772600f9FF75', '_blank')">BUY $3I/ATLAS</button>
                 </div>
 
+                <!-- Small Hint Texts -->
                 <div class="small">The elites watch your every move. Front-run them.</div>
                 <div class="small">Hint: it might not be a comet after all.</div>
             </div>
         </div>
 
+        <!-- Footer -->
         <footer>Built for memetic ops • 3I/ATLAS • <span id="now"></span></footer>
     </div>
     
@@ -337,7 +336,6 @@
             diff -= mins * (1000 * 60);
             const secs = Math.floor(diff / 1000);
 
-            // Using String() is fine, no need for padStart on days if it's large
             document.getElementById('cd-days').textContent = String(days);
             document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
@@ -353,12 +351,6 @@
         updateNow();
         setInterval(updateNow, 1000);
 
-        // CTA hooks (non-invasive)
-        document.getElementById('learnBtn').addEventListener('click', () => {
-            alert('Observer dossier: Keep your eyes open. More drops incoming.');
-        });
-        
-        // Removed unused 'enterBtn' logic
     </script>
 </body>
 
