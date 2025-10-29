@@ -40,9 +40,9 @@
             justify-content: center;
             align-items: center;
             
-            /* PERFORMANCE FIX: Replaced external image with pure CSS background */
+            /* PERFORMANCE FIX & GALAXY EFFECT: Deep purple/blue radial gradient */
             background: #000000;
-            background-image: radial-gradient(circle at center, #010101 0%, #000000 100%);
+            background-image: radial-gradient(circle at 50% 50%, #150035 0%, #000000 100%);
             
             color: var(--text-color);
             text-align: center;
@@ -101,7 +101,8 @@
 
         @keyframes moveStars {
             0% { background-position: 0 0, 0 0, 0 0; }
-            100% { background-position: 2000px 1000px, -1500px 700px, 1000px -1200px; }
+            /* PERFORMANCE FIX: Reduced travel distance */
+            100% { background-position: 1500px 750px, -1200px 500px, 800px -900px; }
         }
         
         .svg-wrap {
