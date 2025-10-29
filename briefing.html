@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="3I/ATLAS Degen Briefing - Classified intelligence for the decentralized resistance." />
+    <title>3I/ATLAS Degen Briefing</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --neon-blue: #00e6ff;
+            --neon-green: #00ffaa;
+            --text-color: #f0f0f0;
+            --accent-red: #ff3333;
+            --bg-dark: #000000;
+            --card-bg: rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Consistent high-performance space background */
+            min-height: 100vh;
+            background: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 50%, #150035 0%, var(--bg-dark) 100%);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .dossier-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Title and Header */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: var(--neon-blue);
+            text-align: center;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 230, 255, 0.6);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--neon-green);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(0, 230, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        /* Content Blocks (Data Cards) */
+        .data-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 230, 255, 0.3);
+            border-left: 5px solid var(--neon-blue);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 230, 255, 0.1);
+            position: relative;
+        }
+        
+        /* The "CLASSIFIED" Stamp */
+        .data-card::before {
+            content: 'DEGEN DATA — ACCESS GRANTED';
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            padding: 5px 10px;
+            background: var(--neon-green);
+            color: var(--bg-dark);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 2px;
+            transform: rotate(2deg);
+            z-index: 2;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
+            font-size: 1.2rem;
+            border-bottom: 1px dashed rgba(0, 255, 170, 0.4);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tagline-list li {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            list-style: none;
+            padding: 8px 0;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px rgba(0, 230, 255, 0.4);
+        }
+
+        .tagline-list li::before {
+            content: '// ';
+            color: var(--neon-green);
+            opacity: 0.8;
+            margin-right: 5px;
+        }
+
+        /* Narrative Style */
+        .narrative-block p {
+            line-height: 1.6;
+            margin-bottom: 1em;
+            font-size: 0.95rem;
+        }
+        
+        .narrative-block strong {
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+        }
+
+        .narrative-block blockquote {
+            border-left: 3px solid var(--accent-red);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: var(--text-color);
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #00bfff, #00ffa6);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none; 
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-green);
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dossier-container">
+        <!-- HEADER -->
+        <h1 class="title">3I/ATLAS</h1>
+        <div class="subtitle">DEGEN BRIEFING — HIGH ALERT STATUS</div>
+
+        <!-- CARD 1: Core Taglines -->
+        <div class="data-card">
+            <h2>\[TARGETED MESSAGE FRAGMENTS]</h2>
+            <ul class="tagline-list">
+                <li>The Object People Call "Alien".</li>
+                <li>Impact: 2027. The Countdown is Real.</li>
+                <li>The Elites are Watching. You've Found ATLAS.</li>
+                <li>It Was Never a Comet.</li>
+            </ul>
+        </div>
+
+        <!-- CARD 2: Long-Form Narrative -->
+        <div class="data-card">
+            <h2>\[NARRATIVE DEPLOYMENT - INITIATE\]</h2>
+            <div class="narrative-block">
+                <p><strong>CLASSIFIED DECLASSIFIED: IT WAS NEVER A COMET.</strong></p>
+                <p>For years, the data surrounding the object designated 3I/ATLAS was suppressed by every major government agency on the planet. Officially, it was classified as an interstellar comet. But the anomalous energy signatures, the non-Keplerian trajectory, and the sheer silence from the highest levels of power tell a different story.</p>
+                <p><strong>3I/ATLAS is not a comet. It is a vessel. And it is coming.</strong></p>
+                <p>As the countdown clock on the main page ticks relentlessly toward 2027, the world's most powerful entities are quietly preparing. They know what's coming. They are trying to hoard the resources and the information before the Impact occurs. They intend to control the narrative and the next age.</p>
+                <p><strong>This is your chance to step into the narrative and resist the gatekeepers.</strong> Join the decentralized resistance, secure your position, and become an early observer. The time for denial is over. The time for ATLAS is upon us.</p>
+            </div>
+        </div>
+        
+        <!-- CALL TO ACTION -->
+        <div class="cta-section">
+            <a href="https://app.uniswap.org/explore/tokens/base/0x0DB21dB265D2a04A1798c2859CDb772600f9FF75?inputCurrency=0x0DB21dB265D2a04A1798c2859CDb772600f9FF75" target="_blank" class="btn">SECURE YOUR ENTRY POINT</a>
+            <div class="disclaimer">^ TRANSACTION LOG INITIATED ^</div>
+        </div>
+        
+        <a href="index.html" style="color:var(--neon-green); opacity: 0.7; font-size: 0.9rem; margin-top: 30px;">[ RETURN TO OBSERVATORY ]</a>
+
+    </div>
+</body>
+
+</html>
