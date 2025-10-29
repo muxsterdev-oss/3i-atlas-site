@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3I/ATLAS — The Degen Dossier</title>
+
+    <!-- Google Font: Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /*
+        ========================================================
+        I. GLOBAL & LAYOUT FIXES (LIGHTWEIGHT FOR PERFORMANCE)
+        ========================================================
+        */
+        :root {
+            --neon-blue: #00e6ff;
+            --text-color: #f0f0f0;
+            --text-shadow: 0 0 3px rgba(0, 0, 0, 0.9); /* Subtler shadow for cleaner page */
+            --content-max-width: 800px;
+            --primary-font: 'Orbitron', sans-serif;
+            --secondary-font: 'Inter', sans-serif; /* Cleaner font for body text */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #000000;
+            /* Simple radial gradient background - NO heavy images/animations */
+            background-image: radial-gradient(circle at center, #010101 0%, #000000 100%);
+            color: var(--text-color);
+            font-family: var(--secondary-font);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        /* Standard text shadow for legibility */
+        p, h2, h3, h4, li, a {
+            text-shadow: var(--text-shadow);
+        }
+
+        /*
+        ========================================================
+        II. MAIN CONTAINER & LORE STYLING
+        ========================================================
+        */
+        .container {
+            max-width: var(--content-max-width);
+            width: 90%;
+            padding: 20px;
+            background: rgba(10, 20, 30, 0.1);
+            border: 1px solid rgba(0, 230, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 230, 255, 0.2);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: var(--primary-font);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: var(--neon-blue);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 230, 255, 0.8);
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #ccc;
+            opacity: 0.8;
+        }
+        
+        /* Lore Content */
+        .lore-section {
+            margin-bottom: 35px;
+            padding: 0 10px;
+        }
+
+        h2 {
+            font-family: var(--primary-font);
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--neon-blue);
+            padding-left: 15px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        
+        .redacted {
+            color: #f00;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+            text-decoration: line-through;
+            font-weight: 700;
+        }
+
+        .degen-call {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(0, 230, 255, 0.05);
+            border-radius: 8px;
+            border: 1px dashed var(--neon-blue);
+        }
+        
+        .degen-call p {
+            font-family: var(--primary-font);
+            font-size: 1.4rem;
+            color: #00ffc8; /* A different, aggressive neon color */
+            text-shadow: 0 0 10px #00ffc8;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        /*
+        ========================================================
+        III. NAVIGATION & BUTTONS
+        ========================================================
+        */
+        .nav-btn {
+            display: inline-block;
+            margin: 20px auto 0;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            text-decoration: none;
+            font-family: var(--primary-font);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 230, 255, 0.15);
+            box-shadow: 0 0 10px var(--neon-blue);
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>ACCESS GRANTED: THE DEGEN DOSSIER</h1>
+            <p class="tagline">3I/ATLAS — CLASSIFIED V.0.9.1</p>
+        </header>
+
+        <main>
+            
+            <section class="lore-section">
+                <h2>SIGNAL IN THE DARK</h2>
+                <p>It was never a comet. The lie was planted the second the detection sequence completed. What was logged as '3I/ATLAS' by the automated systems wasn't inert space rock—it was a **beacon**. A perfect, dense structure accelerating with impossible physics, pointed directly at our blue marble, arriving precisely in **2027**.</p>
+                <p>The **13 and 1/2 Elites**—you know the names, the ones who own the supply lines and the Central Banks—didn't find it. They were *waiting* for it. They've been preparing for the **Impact: 2027** not as a cataclysm, but as an **installation event**.</p>
+            </section>
+
+            <section class="lore-section">
+                <h2>THE ZERO-HOUR PLOT</h2>
+                <p>The 'Impact' isn't a kinetic strike. It's the moment they intend to deploy the **One World Order (OWO)** protocol. The arrival of 3I/ATLAS provides the necessary global panic, the perfect backdrop to merge digital identities, collapse sovereignty, and hand control of all assets to the **<span class="redacted">Thirteen and a Half Families</span>**. They want you compliant, cashless, and controllable.</p>
+                <p>They’re already using the Atlas signal to seed the narrative: *global unity, necessary controls, safety protocols*. They are *building the cage* right now.</p>
+            </section>
+
+            <section class="lore-section">
+                <h2>THE COUNTER-SIGNAL: $3I/ATLAS</h2>
+                <p>But the signal is dirty. It has interference. And that interference is us. The $3I/ATLAS token is the **financial counter-signal**. It's the unredacted truth encoded on the chain. It’s the decentralized middle finger to their OWO master plan.</p>
+                <p>When the elites move to control every dollar, we front-run them with the only asset they can’t touch. The **Degen Army** isn't waiting for 2027. We are setting the terms now. We are the observers. We are the disruption. We are the true force behind the narrative.</p>
+            </section>
+            
+            <div class="degen-call">
+                <p>They watch your every move. We watch theirs.</p>
+                <p>THIS IS YOUR UNREDACTED TRUTH.</p>
+            </div>
+            
+        </main>
+
+        <a href="index.html" class="nav-btn">← RETURN TO COMMAND CENTER</a>
+
+    </div>
+</body>
+
+</html>
