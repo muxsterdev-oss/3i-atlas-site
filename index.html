@@ -33,14 +33,13 @@
         }
 
         body {
-            min-height: 100vh;
+            /* CRITICAL FIX: Lock the body to prevent background scrolling jank */
+            height: 100vh;
             width: 100vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; 
+            display: block;
             
-            /* PERFORMANCE FIX & GALAXY EFFECT: Deep purple/blue radial gradient */
+            /* GALAXY EFFECT: Deep purple/blue radial gradient */
             background: #000000;
             background-image: radial-gradient(circle at 50% 50%, #150035 0%, #000000 100%);
             
@@ -50,11 +49,34 @@
             position: relative;
         }
 
+        /* New Scrollable Container - Handles all content and user scrolling */
+        #scroll-container {
+            height: 100%; 
+            width: 100%;
+            overflow-y: auto; /* Enable smooth scrolling for content only */
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+            /* Re-apply centering logic for content that fits */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 10;
+        }
+
         .wrap {
             max-width: var(--content-max-width);
             width: 90%;
             padding: 20px 10px;
-            z-index: 10; 
+            /* Flex properties ensure the footer stays at the bottom of the content */
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         h1, .title, .subtitle, .small {
@@ -66,7 +88,7 @@
         II. CINEMATIC BACKGROUND (PURE CSS STARS)
         ========================================================
         */
-        /* These pure CSS star animations are very light on resources */
+        /* These pure CSS star layers remain fixed, while the content scrolls over them */
         body::before,
         body::after {
             content: "";
@@ -78,7 +100,7 @@
             background-repeat: repeat;
             z-index: -2;
             pointer-events: none;
-            animation: moveStars 180s linear infinite;
+            animation: moveStars 300s linear infinite; /* Increased time for slower, smoother effect */
             opacity: 0.3;
         }
 
@@ -101,8 +123,8 @@
 
         @keyframes moveStars {
             0% { background-position: 0 0, 0 0, 0 0; }
-            /* PERFORMANCE FIX: Reduced travel distance */
-            100% { background-position: 1500px 750px, -1200px 500px, 800px -900px; }
+            /* PERFORMANCE FIX: Further reduced travel distance */
+            100% { background-position: 1000px 500px, -800px 400px, 600px -700px; }
         }
         
         .svg-wrap {
@@ -229,96 +251,102 @@
 </head>
 
 <body>
-    <!-- The .wrap ensures content is centered and responsive -->
-    <div class="wrap">
-        <div class="hero">
-            <!-- Inline SVG comet (no external assets) -->
-            <div class="svg-wrap" aria-hidden="true">
-                <svg viewBox="0 0 720 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <radialGradient id="g1" cx="30%" cy="60%">
-                            <stop offset="0%" stop-color="#00ffd0" stop-opacity="1" />
-                            <stop offset="60%" stop-color="#00b3ff" stop-opacity="0.6" />
-                            <stop offset="100%" stop-color="#001020" stop-opacity="0" />
-                        </radialGradient>
-                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="8" result="b" />
-                            <feMerge>
-                                <feMergeNode in="b" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
+    <!-- 
+        CRITICAL FIX: This container handles all scrolling. 
+        It scrolls the content over the fixed, non-scrolling animated background.
+    -->
+    <div id="scroll-container">
+        <!-- The .wrap ensures content is centered and responsive -->
+        <div class="wrap">
+            <div class="hero">
+                <!-- Inline SVG comet (no external assets) -->
+                <div class="svg-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 720 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="g1" cx="30%" cy="60%">
+                                <stop offset="0%" stop-color="#00ffd0" stop-opacity="1" />
+                                <stop offset="60%" stop-color="#00b3ff" stop-opacity="0.6" />
+                                <stop offset="100%" stop-color="#001020" stop-opacity="0" />
+                            </radialGradient>
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="8" result="b" />
+                                <feMerge>
+                                    <feMergeNode in="b" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
 
-                    <rect width="100%" height="100%" fill="transparent" />
+                        <rect width="100%" height="100%" fill="transparent" />
 
-                    <!-- trailing streaks -->
-                    <g filter="url(#glow)" transform="translate(60,40)">
-                        <path d="M100 200 C260 160 420 120 600 40" stroke="url(#g1)" stroke-width="36" stroke-linecap="round" fill="none" opacity="0.95" />
-                        <path d="M120 220 C280 180 440 140 640 60" stroke="url(#g1)" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.8" />
-                    </g>
-
-                    <!-- comet core -->
-                    <g transform="translate(520,80)">
-                        <circle r="42" fill="#002230" />
-                        <circle r="36" fill="url(#g1)" />
-                        <g fill="#001a2b" opacity="0.3">
-                            <circle cx="-8" cy="-6" r="8" />
-                            <circle cx="12" cy="6" r="6" />
-                            <ellipse cx="6" cy="-6" rx="10" ry="6" />
+                        <!-- trailing streaks -->
+                        <g filter="url(#glow)" transform="translate(60,40)">
+                            <path d="M100 200 C260 160 420 120 600 40" stroke="url(#g1)" stroke-width="36" stroke-linecap="round" fill="none" opacity="0.95" />
+                            <path d="M120 220 C280 180 440 140 640 60" stroke="url(#g1)" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.8" />
                         </g>
-                    </g>
 
-                    <!-- faint stars -->
-                    <g fill="#0a2233" opacity="0.8">
-                        <circle cx="40" cy="30" r="1.2" />
-                        <circle cx="120" cy="80" r="1" />
-                        <circle cx="220" cy="40" r="0.9" />
-                        <circle cx="320" cy="120" r="1.1" />
-                        <circle cx="580" cy="30" r="1.3" />
-                    </g>
-                </svg>
-            </div>
+                        <!-- comet core -->
+                        <g transform="translate(520,80)">
+                            <circle r="42" fill="#002230" />
+                            <circle r="36" fill="url(#g1)" />
+                            <g fill="#001a2b" opacity="0.3">
+                                <circle cx="-8" cy="-6" r="8" />
+                                <circle cx="12" cy="6" r="6" />
+                                <ellipse cx="6" cy="-6" rx="10" ry="6" />
+                            </g>
+                        </g>
 
-            <!-- Content -->
-            <div>
-                <!-- Primary Heading -->
-                <h1 class="impact">Impact: 2027</h1>
-                <div class="subtitle">3I/ATLAS — the object people call "alien". The narrative begins.</div>
-
-                <!-- Countdown -->
-                <div class="countdown" id="countdown">
-                    <div class="cd-item">
-                        <div class="num" id="cd-days">--</div>
-                        <div class="lbl">Days</div>
-                    </div>
-                    <div class="cd-item">
-                        <div class="num" id="cd-hours">--</div>
-                        <div class="lbl">Hours</div>
-                    </div>
-                    <div class="cd-item">
-                        <div class="num" id="cd-mins">--</div>
-                        <div class="lbl">Minutes</div>
-                    </div>
-                    <div class="cd-item">
-                        <div class="num" id="cd-secs">--</div>
-                        <div class="lbl">Seconds</div>
-                    </div>
+                        <!-- faint stars -->
+                        <g fill="#0a2233" opacity="0.8">
+                            <circle cx="40" cy="30" r="1.2" />
+                            <circle cx="120" cy="80" r="1" />
+                            <circle cx="220" cy="40" r="0.9" />
+                            <circle cx="320" cy="120" r="1.1" />
+                            <circle cx="580" cy="30" r="1.3" />
+                        </g>
+                    </svg>
                 </div>
 
-                <!-- Call to Action (CTA) Buttons -->
-                <div class="cta">
-                    <a href="lore.html" class="btn" id="learnLink">Observers' Dossier</a>
-                    <button class="btn primary" id="buyBtn" onclick="window.open('https://app.uniswap.org/explore/tokens/base/0x0DB21dB265D2a04A1798c2859CDb772600f9FF75?inputCurrency=0x0DB21dB265D2a04A1798c2859CDb772600f9FF75', '_blank')">BUY $3I/ATLAS</button>
-                </div>
+                <!-- Content -->
+                <div>
+                    <!-- Primary Heading -->
+                    <h1 class="impact">Impact: 2027</h1>
+                    <div class="subtitle">3I/ATLAS — the object people call "alien". The narrative begins.</div>
 
-                <!-- Small Hint Texts -->
-                <div class="small">The elites watch your every move. Front-run them.</div>
-                <div class="small">Hint: it might not be a comet after all.</div>
+                    <!-- Countdown -->
+                    <div class="countdown" id="countdown">
+                        <div class="cd-item">
+                            <div class="num" id="cd-days">--</div>
+                            <div class="lbl">Days</div>
+                        </div>
+                        <div class="cd-item">
+                            <div class="num" id="cd-hours">--</div>
+                            <div class="lbl">Hours</div>
+                        </div>
+                        <div class="cd-item">
+                            <div class="num" id="cd-mins">--</div>
+                            <div class="lbl">Minutes</div>
+                        </div>
+                        <div class="cd-item">
+                            <div class="num" id="cd-secs">--</div>
+                            <div class="lbl">Seconds</div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action (CTA) Buttons -->
+                    <div class="cta">
+                        <a href="lore.html" class="btn" id="learnLink">Observers' Dossier</a>
+                        <button class="btn primary" id="buyBtn" onclick="window.open('https://app.uniswap.org/explore/tokens/base/0x0DB21dB265D2a04A1798c2859CDb772600f9FF75?inputCurrency=0x0DB21dB265D2a04A1798c2859CDb772600f9FF75', '_blank')">BUY $3I/ATLAS</button>
+                    </div>
+
+                    <!-- Small Hint Texts -->
+                    <div class="small">The elites watch your every move. Front-run them.</div>
+                    <div class="small">Hint: it might not be a comet after all.</div>
+                </div>
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- Footer is part of the scrollable content -->
         <footer>Built for memetic ops • 3I/ATLAS • <span id="now"></span></footer>
     </div>
     
